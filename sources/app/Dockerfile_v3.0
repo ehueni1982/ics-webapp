@@ -1,0 +1,16 @@
+ENTRYPOINT ["python"]
+CMD [ "app.py" ]
+
+[vagrant@jenkins app]$ cat Dockerfile_v3.0
+FROM python:3.6-alpine
+LABEL maintainer="Barthelemy Ehueni ANGORA"
+WORKDIR /opt/
+RUN pip install flask
+ADD . /opt/
+VOLUME /opt
+EXPOSE 8080
+ENV ODOO_URL="https://www.odoo.com"
+ENV PGADMIN_URL="https://www.pgadmin.org"
+ENTRYPOINT ["sh", "-t", "source /opt/entrypoint.sh", "-s" ]
+CMD ["python", "app.py"]
+
