@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+    ics-webapp:
+        container_name: ics-webapp
+        ports:
+            - "8080:8080"
+        environment:
+            - "ODOO_URL=http://${HOST_IP}:8069/"
+            - "PGADMIN_URL=http://${HOST_IP}:5050/"
+        image: 'ehueni1982/ics-webapp:v1.0'
+        networks:
+            - ics_network_webapp
+
+networks:
+    ics_network_webapp:
+      driver: bridge
+      name: ics_network_webapp
